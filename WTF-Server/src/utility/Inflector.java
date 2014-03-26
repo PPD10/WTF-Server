@@ -59,7 +59,7 @@ public class Inflector {
 	 * @return Le nom de la classe
 	 */
 	public static String classify(String tableName) {
-		return Inflector.camelize(tableName);
+		return WordUtils.capitalize(Inflector.camelize(tableName));
 	}
 
 	/**

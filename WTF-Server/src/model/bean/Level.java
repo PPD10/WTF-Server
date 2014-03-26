@@ -9,8 +9,12 @@ package model.bean;
 public class Level extends Bean {
 
 	private Integer maxScore;
-	private Integer speed;
-	private Integer time;
+	private Integer idGame;
+	private Integer idPlayer;
+
+	static {
+		belongsTo(Game.class);
+	}
 
 	/**
 	 * Crée un objet Level.
@@ -27,11 +31,13 @@ public class Level extends Bean {
 	 *            La vitesse
 	 * @param time
 	 *            Le temps
+	 * @param idGame
+	 *            L'ID du jeu
 	 */
-	public Level(Integer maxScore, Integer speed, Integer time) {
+	public Level(Integer maxScore, Integer idGame, Integer idPlayer) {
 		this.maxScore = maxScore;
-		this.speed = speed;
-		this.time = time;
+		this.idGame = idGame;
+		this.idPlayer = idPlayer;
 	}
 
 	/**
@@ -54,41 +60,30 @@ public class Level extends Bean {
 	}
 
 	/**
-	 * Retourne la vitesse.
+	 * Retourne l'ID du jeu
 	 * 
-	 * @return La vitesse
+	 * @return L'ID du jeu
 	 */
-	public Integer getSpeed() {
-		return speed;
+	public Integer getIdGame() {
+		return idGame;
 	}
 
 	/**
-	 * Définit la vitesse.
+	 * Définit l'ID du jeu
 	 * 
-	 * @param speed
-	 *            La nouvelle vitesse
+	 * @param idGame
+	 *            Le nouvel ID du jeu
 	 */
-	public void setSpeed(Integer speed) {
-		this.speed = speed;
+	public void setIdGame(Integer idGame) {
+		this.idGame = idGame;
 	}
 
-	/**
-	 * Retourne le temps
-	 * 
-	 * @return Le temps
-	 */
-	public Integer getTime() {
-		return time;
+	public Integer getIdPlayer() {
+		return idPlayer;
 	}
 
-	/**
-	 * Définit le temps
-	 * 
-	 * @param time
-	 *            Le nouveau temps
-	 */
-	public void setTime(Integer time) {
-		this.time = time;
+	public void setIdPlayer(Integer idPlayer) {
+		this.idPlayer = idPlayer;
 	}
 
 }

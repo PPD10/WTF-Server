@@ -1,5 +1,9 @@
 package model.bean;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Cette classe est le JavaBean des parties (ou jeux)
  * 
@@ -11,6 +15,14 @@ public class Game extends Bean {
 	private Integer score;
 	private Integer livesNumber;
 	private Integer time;
+	private Integer idPlayer;
+	
+	private Set<Level> levelAssociations = new HashSet<Level>();
+
+	static {
+		belongsTo(Player.class);
+		//hasMany(Level.class);
+	}
 
 	/**
 	 * Crée un objet Game.
@@ -19,8 +31,8 @@ public class Game extends Bean {
 	}
 
 	/**
-	 * Crée un objet Game à partir d'un score, d'un nombre de vies et d'un
-	 * temps.
+	 * Crée un objet Game à partir d'un score, d'un nombre de vies, d'un temps
+	 * et d'un ID de joueur
 	 * 
 	 * @param score
 	 *            Le score
@@ -28,11 +40,15 @@ public class Game extends Bean {
 	 *            Le nombre de vies
 	 * @param time
 	 *            Le temps
+	 * @param idPlayer
+	 *            L'ID du joueur
 	 */
-	public Game(Integer score, Integer livesNumber, Integer time) {
-		this.setScore(score);
-		this.setLivesNumber(livesNumber);
-		this.setTime(time);
+	public Game(Integer score, Integer livesNumber, Integer time,
+			Integer idPlayer) {
+		this.score = score;
+		this.livesNumber = livesNumber;
+		this.time = time;
+		this.idPlayer = idPlayer;
 	}
 
 	/**
@@ -90,6 +106,25 @@ public class Game extends Bean {
 	 */
 	public void setTime(Integer time) {
 		this.time = time;
+	}
+
+	/**
+	 * Retourne l'ID du joueur
+	 * 
+	 * @return L'ID du joueur
+	 */
+	public Integer getIdPlayer() {
+		return idPlayer;
+	}
+
+	/**
+	 * Définit l'ID du joueur
+	 * 
+	 * @param idPlayer
+	 *            Le nouvel ID du joueur
+	 */
+	public void setIdPlayer(Integer idPlayer) {
+		this.idPlayer = idPlayer;
 	}
 
 }
