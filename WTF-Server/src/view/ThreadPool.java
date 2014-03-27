@@ -32,7 +32,7 @@ public class ThreadPool implements Runnable {
 				clientSocket = this.serverSocket.accept();				
 			} catch (IOException e) {
 				if (isStopped()) {
-					System.out.println("Serveur arrêté.");
+					System.out.println("Serveur arrété.");
 					return;
 				}
 				throw new RuntimeException("Erreur à la connexion.", e);
@@ -42,7 +42,7 @@ public class ThreadPool implements Runnable {
 		}
 		
 		this.threadPool.shutdown();
-		System.out.println("Serveur arrêté.");
+		System.out.println("Serveur arrété.");
 	}
 	
 	protected void init() {

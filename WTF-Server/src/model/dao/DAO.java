@@ -47,6 +47,10 @@ public class DAO<T extends Bean> {
 	public void setBean(T bean) {
 		this.bean = bean;
 	}
+	
+	public T getBean() {
+		return this.bean;
+	}
 
 	/**
 	 * Sauvegarde une ligne dans une table. Si l'ID n'est pas renseigné, la

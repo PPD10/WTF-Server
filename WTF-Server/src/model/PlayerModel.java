@@ -27,31 +27,25 @@ public class PlayerModel extends Model<PlayerDAO> {
 		return isLoggedIn;
 	}
 
-	public boolean addDevice(int id, String macAddress) {
-		Player player = new Player();
-		player.setId(id);
-		getDAO().setBean(player);
-		player = getDAO().find(false);
+	public boolean addDevice(int idPlayer, String macAddress, int[] idDevice) {
+		DeviceModel deviceModel = new DeviceModel();
+		deviceModel.createDevice(macAddress, idPlayer);
 		
-		if (player != null) {
-			//player.addMacAddress(macAddress);
-			return true;
-		}
+		System.out.println(deviceModel.getDAO().getBean().getId());
 		
-		return false;
+		idDevice[0] = deviceModel.getDAO().getBean().getId();
+		
+		return deviceModel.getDAO().save();
 	}
 
 	public boolean createPlayer(String username, String password,
-			String macAddress) {
+			String macAddress, int[] idDevice) {
 		Player player = new Player(username, password);
 
 		getDAO().setBean(player);
 
 		if (getDAO().save()) {
-			DeviceModel deviceModel = new DeviceModel();
-			deviceModel.createDevice(macAddress, player.getId());
-			if (deviceModel.getDAO().save())
-				return true;
+			return addDevice(player.getId(), macAddress, idDevice);
 		}
 
 		return false;
